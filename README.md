@@ -1,4 +1,4 @@
-# my-repository
+# Vertical Button Theme
 
 This is a standalone website theme using Bootstrap.
 It also can use Font Awesome icons.  It is a PHP file 
