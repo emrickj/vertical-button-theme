@@ -32,6 +32,13 @@
    //echo $xml->image[1];
    //echo $_SERVER['HTTP_HOST']."\n";
    //echo $_SERVER['SCRIPT_NAME'];
+   
+   function ic_html($pname) {
+      if (strpos(" ".$pname,chr(0xef))==1) $rt = '<i class="fa">'.substr($pname,0,3).'</i> '.substr($pname,4);
+         else $rt = $pname;
+      return $rt;
+   }
+      
    if($_SERVER['HTTPS']) $mps="https://"; else $mps="http://";
    $mainpage = $mps.$_SERVER['HTTP_HOST'].str_replace("/index.php","",$_SERVER['SCRIPT_NAME']);
       if ($p=="2") echo "<link rel='prev' href='".$mainpage."'>"; else
@@ -59,17 +66,17 @@ t1 { white-space: pre-wrap;}
          </div>
       </div>
       <div class="row">
-         <div class="col-sm-3 fa">
+         <div class="col-sm-3">
                   <br>
                   <div class="btn-group-vertical btn-group-lg">
                       <?php
                      for($i=1;$i<=6;$i++) {
                        if($i==$p && $w=="1" && $name=="") $bs="active"; else $bs="";
                        if($i==1) echo "<a href='".$mainpage."' class='btn btn-primary ".$bs."'>
-                      ".$xml->page[0]->name."</a>";
+                      ".ic_html($xml->page[0]->name)."</a>";
                        else if(strlen($xml->page[$i-1]->name)>2) 
                           echo "<a href='?p=".$i."' class='btn btn-primary "
-                          .$bs."'>" . $xml->page[$i-1]->name . "</a>";
+                          .$bs."'>" . ic_html($xml->page[$i-1]->name) . "</a>";
                      }
                      ?>
                      <ul class="dropdown-menu" role="menu">
@@ -78,7 +85,7 @@ t1 { white-space: pre-wrap;}
                        if($i==$p && $name=="") $bs="disabled"; else $bs="";
                        if(strlen($xml2->page[$i-1]->name)>2) 
                           echo "<li><a rel='nofollow' href='?w=2&p=".$i."'>"
-                          . str_replace('"fa ','"fa fa-fw ',$xml2->page[$i-1]->name) . "</a></li>\n";
+                          . str_replace('"fa','"fa fa-fw',ic_html($xml2->page[$i-1]->name)) . "</a></li>\n";
                      }
                      ?>
                      </ul>
