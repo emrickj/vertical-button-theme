@@ -78,7 +78,7 @@ t1 { white-space: pre-wrap;}
                        if($i==$p && $name=="") $bs="disabled"; else $bs="";
                        if(strlen($xml2->page[$i-1]->name)>2) 
                           echo "<li><a rel='nofollow' href='?w=2&p=".$i."'>"
-                          . $xml2->page[$i-1]->name . "</a></li>\n";
+                          . str_replace('"fa ','"fa fa-fw ',$xml2->page[$i-1]->name) . "</a></li>\n";
                      }
                      ?>
                      </ul>
