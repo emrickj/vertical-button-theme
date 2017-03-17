@@ -110,13 +110,12 @@ t1 { white-space: pre-wrap;}
                             if ($name=="" || ($phone=="" && $email=="")) {
                                echo "<b>Missing Name or Contact Info.</b>";
                             } else {
-                               //mysql_connect("sql209.byethost4.com",$username,$password);
-                               //@mysql_select_db($database) or die( "Unable to select database");
+                               //$link = mysqli_connect("sql209.byethost4.com",$username,$password,$database);
 
                                //$query = "INSERT INTO idscts (name,phone,email,message) VALUES ('$name','$phone','$email','$message')";
-                               //mysql_query($query);
+                               //mysqli_query($link,$query);
 
-                               //mysql_close();
+                               //mysqli_close($link);
 
                                echo "<b>Contact information submitted.  We will contact you as soon as possible.</b>";
                             }
