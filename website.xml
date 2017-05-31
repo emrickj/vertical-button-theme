@@ -2,7 +2,8 @@
 <website>
    <title>🚩︎ Website Name 🚩︎</title>
    <style>
-
+h3[id] {color:#729FCF;}
+li span {color:#3C763D;}
    </style>
    <page type='page' language='EN'>
       <name>🏠︎ Home</name>

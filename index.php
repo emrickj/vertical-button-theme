@@ -82,9 +82,9 @@ t1 { white-space: pre-wrap;}
                      <ul class="dropdown-menu" role="menu">
                      <?php
                      for($i=1;$i<=6;$i++) {
-                       if($i==$p && $name=="") $bs="disabled"; else $bs="";
+                       if($i==$p && $w=="2" && $name=="") $bs=" class='active'"; else $bs="";
                        if(strlen($xml2->page[$i-1]->name)>2) 
-                          echo "<li><a rel='nofollow' href='?w=2&p=".$i."'>"
+                          echo "<li".$bs."><a rel='nofollow' href='?w=2&p=".$i."'>"
                           . str_replace('"fa','"fa fa-fw',ic_html($xml2->page[$i-1]->name)) . "</a></li>\n";
                      }
                      ?>
@@ -101,7 +101,7 @@ t1 { white-space: pre-wrap;}
                      <?php
                         if ($name=="") {
                             if ($w=="1") echo trim($xml->page[$p-1]->contents);
-                            if ($w=="2") echo str_replace("?p=","?w=2&amp;p=",trim($xml2->page[$p-1]->contents));
+                            if ($w=="2") echo str_replace('"?p=','"?w=2&amp;p=',trim($xml2->page[$p-1]->contents));
                         } else {
                             $username="username";
                             $password="password";
@@ -148,7 +148,7 @@ t1 { white-space: pre-wrap;}
                                  <div class="col-sm-6">
                                     <textarea class="form-control" rows="5" name="message"></textarea>
                                     <br>
-                                    <input type="submit" class="btn btn-info" value="Submit">
+                                    <input type="submit" class="btn btn-info" value="Submit" disabled>
                                  </div>
                               </div>
                            </form><?php
