@@ -38,6 +38,17 @@
          else $rt = $pname;
       return $rt;
    }
+   
+   function displayMenu($pn) {
+      $x = $GLOBALS['xml'];
+      $n = $GLOBALS['name'];
+      for($i=1;$i<=6;$i++) {
+         if($i==$pn && $n=="") $bs=" class='active'"; else $bs="";
+         if(strlen($x->page[$i-1]->name)>2) 
+            echo "<li".$bs."><a href='?p=".$i."'>" 
+                 . ic_html($x->page[$i-1]->name) . "</a></li>";
+      }
+   }
       
    if($_SERVER['HTTPS']) $mps="https://"; else $mps="http://";
    $mainpage = $mps.$_SERVER['HTTP_HOST'].str_replace("/index.php","",$_SERVER['SCRIPT_NAME']);
@@ -52,8 +63,26 @@ t1 { white-space: pre-wrap;}
 </style>
 </head>
 <body id="demo">
+<nav class="navbar navbar-default navbar-fixed-top hidden-sm hidden-md hidden-lg">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="<?php echo $mainpage ?>"><?php echo $xml->title ?></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <?php displayMenu($p) ?>
+      </ul>
+    </div>
+  </div>
+</nav>
    <div class="container">
       <div class="row">
+         <div class="hidden-sm hidden-md hidden-lg" style="padding-top: 50px;"></div>
          <div class="col-sm-3" style="padding: 20px">
          <b><h2><center><?php echo $xml->title ?></center></h2></b>
          </div>
@@ -66,7 +95,7 @@ t1 { white-space: pre-wrap;}
          </div>
       </div>
       <div class="row">
-         <div class="col-sm-3">
+         <div class="col-sm-3 hidden-xs">
                   <br>
                   <div class="btn-group-vertical btn-group-lg">
                       <?php
