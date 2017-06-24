@@ -13,10 +13,3 @@ website file website.xml.  To create a website file for a
 website, you could modify the website file listed here, or
 go to emrickj.byethost4.com/website_editor.php to create a
 new one.
-
-To run this theme, simply put this PHP file into your domain
-or subdomain.  Create a folder named "data" and upload
-website.xml and website2.xml to it.
-
-Please feel free to modify this theme and reupload to
-Github.
