@@ -161,7 +161,7 @@ t1 { white-space: pre-wrap;}
                                  </div>
                               </div>
                               <div class="form-group">
-                                 <label class="control-label col-sm-3" for="phone">Contact Phone #:</label>
+                                 <label class="control-label col-sm-3" for="phone">Contact&nbsp;Phone&nbsp;#:</label>
                                  <div class="col-sm-6">
                                     <input type="text" class="form-control" name="phone">
                                  </div>
@@ -200,8 +200,8 @@ t1 { white-space: pre-wrap;}
 </body>
 <script>
 
-if ($(".container").height() < window.outerHeight)
-   $(".container").height(window.outerHeight);
+//if ($(".container").height() < window.outerHeight)
+//   $(".container").height(window.outerHeight);
 
 </script>
 </html>
