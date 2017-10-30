@@ -67,7 +67,7 @@ t1 { white-space: pre-wrap;}
    <div class="container">
       <div class="row">
          <div class="hidden-sm hidden-md hidden-lg" style="padding-top: 50px;"></div>
-         <div class="col-sm-3" style="padding: 20px">
+         <div class="col-sm-3" style="padding: 20px" id="title">
          <b><h2><center><?php echo $xml->title ?></center></h2></b>
          </div>
          <div class="col-sm-9">
