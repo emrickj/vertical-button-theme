@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<website>
-   <title>🚩︎ Website Name 🚩︎</title>
+<website theme='1'>
+   <title>🚩︎ Website Name 🚩︎</title>
    <style>
+#title {
+   white-space: nowrap;
+}
 h3[id] {color:#2196F3;}
 li span {color:#4CAF50;}
    </style>
