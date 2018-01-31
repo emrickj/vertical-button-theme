@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <?php
    $name = $_POST['name'];
@@ -24,15 +24,15 @@
    if(isset($_GET['w'])) $w = $_GET['w'];
       else $w="1";
 
-   $xml=simplexml_load_file("data/website.xml") or die("Error: Cannot create object");
-   $xml2=simplexml_load_file("data/website2.xml") or die("Error: Cannot create object");
+   $xml=simplexml_load_file("data/website.xml") or die("<br><br>Error: Cannot create object, please make sure that 'website.xml' is in the 'data' directory.");
+   $xml2=simplexml_load_file("data/website2.xml") or die("<br><br>Error: Cannot create object, please make sure that 'website2.xml' is in the 'data' directory.");
    //print_r($xml);
    //echo $xml->image[1];
    //echo $_SERVER['HTTP_HOST']."\n";
    //echo $_SERVER['SCRIPT_NAME'];
    
-   require 'dspmenu.php';
-   require 'dspcnt.php';
+   $si=(include 'dspmenu.php') or die("<br><br>Error: Unable to access 'dspmenu.php'.  Make sure this file is in the directory where the theme file is.");
+   $si=(include 'dspcnt.php') or die("<br><br>Error: Unable to access 'dspcnt.php'.  Make sure this file is in the directory where the theme file is.");
       
    if($_SERVER['HTTPS']) $mps="https://"; else $mps="http://";
    $mainpage = $mps.$_SERVER['HTTP_HOST'].str_replace("/index.php","",$_SERVER['SCRIPT_NAME']);
@@ -149,9 +149,9 @@ t1 { white-space: pre-wrap;}
                         if($xml->page[$p-1]['type']=="comments" && $w=="1" && $name=="") {
                      ?>
                            <!-- begin htmlcommentbox.com -->
-                           <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
-                           <link rel="stylesheet" type="text/css" href="http://www.htmlcommentbox.com/static/skins/default/skin.css" />
-                           <script type="text/javascript" language="javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={  };} (function(){s=document.createElement("script");s.setAttribute("type","text/javascript");s.setAttribute("src", "http://www.htmlcommentbox.com/jread?page="+escape((window.hcb_user && hcb_user.PAGE)||(""+window.location)).replace("+","%2B")+"&opts=470&num=10");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+                           <div id="HCB_comment_box"><a href="https://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
+                           <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/default/skin.css" />
+                           <script type="text/javascript" language="javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={  };} (function(){s=document.createElement("script");s.setAttribute("type","text/javascript");s.setAttribute("src", "https://www.htmlcommentbox.com/jread?page="+escape((window.hcb_user && hcb_user.PAGE)||(""+window.location)).replace("+","%2B")+"&opts=470&num=10");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
                            <!-- end htmlcommentbox.com --><?php
                         }
                      ?>
@@ -161,8 +161,8 @@ t1 { white-space: pre-wrap;}
       </div>
       <center><h6>This website was created using <a href="https://www.gem-editor.com">GEM</a>.</h6></center>
    </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 <script>
 
