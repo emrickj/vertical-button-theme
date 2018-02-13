@@ -1,4 +1,12 @@
 <?php
+   $name = $_POST['name'];
+   $phone = $_POST['phone'];
+   $email = $_POST['email'];
+   $message = $_POST['message'];
+   
+   if(isset($_GET['u']) && $_GET['u']!="") $b = "_".$_GET['u'];
+      else $b="";
+   // echo "--".$b."--";
 
 function dispContents($pn,$u="",$wn=1) {
    $x = $GLOBALS['xml'];

@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <?php
-   $name = $_POST['name'];
-   $phone = $_POST['phone'];
-   $email = $_POST['email'];
-   $message = $_POST['message'];
-   
    //ini_set('display_errors', 'On');
    //error_reporting(E_ALL);
-
-   if(isset($_GET['u']) && $_GET['u']!="") $b = "_".$_GET['u'];
-      else $b="";
-   // echo "--".$b."--";
 
    if(isset($_GET['p'])) $p = $_GET['p'];
       else $p="1";
@@ -30,14 +14,26 @@
    //echo $xml->image[1];
    //echo $_SERVER['HTTP_HOST']."\n";
    //echo $_SERVER['SCRIPT_NAME'];
-   
+
    $si=(include 'dspmenu.php') or die("<br><br>Error: Unable to access 'dspmenu.php'.  Make sure this file is in the directory where the theme file is.");
    $si=(include 'dspcnt.php') or die("<br><br>Error: Unable to access 'dspcnt.php'.  Make sure this file is in the directory where the theme file is.");
       
    if($_SERVER['HTTPS']) $mps="https://"; else $mps="http://";
    $mainpage = $mps.$_SERVER['HTTP_HOST'].str_replace("/index.php","",$_SERVER['SCRIPT_NAME']);
-      if ($p=="2") echo "<link rel='prev' href='".$mainpage."'>"; else
-   if ($p > "1") echo "<link rel='prev' href='?p=".($p - 1)."'>";
+   
+   $lang = $xml->page[$p-1]['language'];
+   if ($lang == "") $lang="en";
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $lang ?>">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<?php
+   if ($p=="2") echo "<link rel='prev' href='".$mainpage."'>"; else
+      if ($p > "1") echo "<link rel='prev' href='?p=".($p - 1)."'>";
    if (($p < "6") && strlen($xml->page[intval($p)]->name)>2) echo "<link rel='next' href='?p=".($p + 1)."'>";
 ?>
 	<title><?php echo strip_tags($xml->title) ?></title>
