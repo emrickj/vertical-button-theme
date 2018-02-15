@@ -1,8 +1,12 @@
 <?php
+   error_reporting(0);
+
    $name = $_POST['name'];
    $phone = $_POST['phone'];
    $email = $_POST['email'];
    $message = $_POST['message'];
+   
+   error_reporting(E_ALL);
    
    if(isset($_GET['u']) && $_GET['u']!="") $b = "_".$_GET['u'];
       else $b="";

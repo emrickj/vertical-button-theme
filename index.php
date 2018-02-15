@@ -8,6 +8,9 @@
    if(isset($_GET['w'])) $w = $_GET['w'];
       else $w="1";
 
+   $si=(include 'dspmenu.php') or die("<br><br>Error: Unable to access 'dspmenu.php'.  Make sure this file is in the directory where the theme file is.");
+   $si=(include 'dspcnt.php') or die("<br><br>Error: Unable to access 'dspcnt.php'.  Make sure this file is in the directory where the theme file is.");
+      
    $xml=simplexml_load_file("data/website.xml") or die("<br><br>Error: Cannot create object, please make sure that 'website.xml' is in the 'data' directory.");
    $xml2=simplexml_load_file("data/website2.xml") or die("<br><br>Error: Cannot create object, please make sure that 'website2.xml' is in the 'data' directory.");
    //print_r($xml);
@@ -15,9 +18,6 @@
    //echo $_SERVER['HTTP_HOST']."\n";
    //echo $_SERVER['SCRIPT_NAME'];
 
-   $si=(include 'dspmenu.php') or die("<br><br>Error: Unable to access 'dspmenu.php'.  Make sure this file is in the directory where the theme file is.");
-   $si=(include 'dspcnt.php') or die("<br><br>Error: Unable to access 'dspcnt.php'.  Make sure this file is in the directory where the theme file is.");
-      
    if($_SERVER['HTTPS']) $mps="https://"; else $mps="http://";
    $mainpage = $mps.$_SERVER['HTTP_HOST'].str_replace("/index.php","",$_SERVER['SCRIPT_NAME']);
    
