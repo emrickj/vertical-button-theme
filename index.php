@@ -13,15 +13,13 @@
       
    $xml=simplexml_load_file("data/website.xml") or die("<br><br>Error: Cannot create object, please make sure that 'website.xml' is in the 'data' directory.");
    $xml2=simplexml_load_file("data/website2.xml") or die("<br><br>Error: Cannot create object, please make sure that 'website2.xml' is in the 'data' directory.");
-   //print_r($xml);
-   //echo $xml->image[1];
-   //echo $_SERVER['HTTP_HOST']."\n";
-   //echo $_SERVER['SCRIPT_NAME'];
+   $xpath="/website/page[position()=".$p."]";
+   if ($w=="2") $page = $xml2->xpath($xpath); else $page = $xml->xpath($xpath);
 
    if($_SERVER['HTTPS']) $mps="https://"; else $mps="http://";
    $mainpage = $mps.$_SERVER['HTTP_HOST'].str_replace("/index.php","",$_SERVER['SCRIPT_NAME']);
    
-   $lang = $xml->page[$p-1]['language'];
+   $lang = $page[0]['language'];
    if ($lang == "") $lang="en";
 ?>
 <!DOCTYPE html>
@@ -31,11 +29,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<?php
-   if ($p=="2") echo "<link rel='prev' href='".$mainpage."'>"; else
-      if ($p > "1") echo "<link rel='prev' href='?p=".($p - 1)."'>";
-   if (($p < "6") && strlen($xml->page[intval($p)]->name)>2) echo "<link rel='next' href='?p=".($p + 1)."'>";
-?>
+<?php paginatePage($p) ?>
 	<title><?php echo strip_tags($xml->title) ?></title>
 <style>
 t1 { white-space: pre-wrap;}
@@ -68,12 +62,8 @@ t1 { white-space: pre-wrap;}
          </div>
          <div class="col-sm-9">
             <?php
-            if ($w=="1")
-               if(strlen($xml->page[$p-1]->image)>4)
-                  echo "<img class='img-responsive' src='".$xml->page[$p-1]->image."'>\n";
-            if ($w=="2")
-               if(strlen($xml2->page[$p-1]->image)>4)
-                  echo "<img class='img-responsive' src='".$xml2->page[$p-1]->image."'>\n";
+               if(strlen($page[0]->image)>4)
+                  echo "<img class='img-responsive' src='".$page[0]->image."'>\n";
             ?>
             <br>
          </div>
@@ -110,8 +100,7 @@ t1 { white-space: pre-wrap;}
                                 echo "<b>Contact information submitted.  We will contact you as soon as possible.</b>";
                              else echo "<b>Missing Name or Contact Info.</b>";
                         echo "\n";
-                        if((($xml->page[$p-1]['type']=="form" && $w=="1") || 
-                           ($xml2->page[$p-1]['type']=="form" && $w=="2")) && $name=="") {
+                        if($page[0]['type']=="form" && $name=="") {
                      ?>
                            <form class="form-horizontal" role="form" method="post">
                               <div class="form-group">
@@ -142,7 +131,7 @@ t1 { white-space: pre-wrap;}
                               </div>
                            </form><?php
                         }
-                        if($xml->page[$p-1]['type']=="comments" && $w=="1" && $name=="") {
+                        if($page[0]['type']=="comments" && $w=="1" && $name=="") {
                      ?>
                            <!-- begin htmlcommentbox.com -->
                            <div id="HCB_comment_box"><a href="https://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
