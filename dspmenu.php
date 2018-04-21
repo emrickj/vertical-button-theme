@@ -20,6 +20,39 @@ function displayMenu_x($pname,$ws=1,$as="active") {
 	}
 }
 
+// function below is used for Bootstrap 4.0 Dropdowns
+
+function displayMenu_xd($pname,$ws=1) {
+	$pn = $GLOBALS['p'];
+	$wn = $GLOBALS['w'];
+	$u = $GLOBALS['b'];
+	if($u!="") $us="u=".ltrim($u,"_")."&"; else $us="";
+	if($ws>1) $wp="w=".$ws."&"; else $wp="";
+	$i=1;
+    foreach ($pname as $item) {
+	   if($i==$pn && $ws==$wn) $bs=" active"; else $bs="";
+	   echo "<li><a class='dropdown-item".$bs."' href='?".$us.$wp."p=".$i++."'>"
+            . str_replace('"fa','"fa fa-fw',ic_html($item)) . "</a></li>\n";
+	}
+}
+
+// function below is used for Bootstrap 4.0 Navigation Bars
+
+function displayMenu_xn($pname,$ws=1) {
+	$pn = $GLOBALS['p'];
+	$wn = $GLOBALS['w'];
+	$u = $GLOBALS['b'];
+	if($u!="") $us="u=".ltrim($u,"_")."&"; else $us="";
+	if($ws>1) $wp="w=".$ws."&"; else $wp="";
+	$i=1;
+    foreach ($pname as $item) {
+	   if($i==$pn && $ws==$wn) $bs=" active"; else $bs="";
+	   echo "<li class='nav-item'><a class='nav-link".$bs."' href='?".$us.$wp."p=".$i++."'>"
+            . str_replace('"fa','"fa fa-fw',ic_html($item)) . "</a></li>\n";
+	}
+}
+
+
 function displayMenu($pn,$as="active",$wn=1,$ws=1) {
    $x = $GLOBALS['xml'];
    $x2 = $GLOBALS['xml2'];
